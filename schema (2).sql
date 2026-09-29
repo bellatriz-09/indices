@@ -1,7 +1,3 @@
--- ============================================================
--- Cenário: Company — departamentos e empregados
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS company;
 USE company;
 
