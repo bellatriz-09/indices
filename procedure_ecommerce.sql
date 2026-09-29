@@ -1,17 +1,10 @@
--- ============================================================
--- Procedure de manipulação de dados — E-commerce (tabela produto)
--- Reaproveita o esquema lógico já criado no desafio de e-commerce.
--- Variável de controle p_acao decide a operação:
---   1 = inserir | 2 = atualizar | 3 = excluir
--- ============================================================
-
 USE ecommerce;
 
 DELIMITER $$
 
 CREATE PROCEDURE sp_manipula_produto (
-    IN p_acao          INT,             -- 1 = inserir | 2 = atualizar | 3 = excluir
-    IN p_id_produto    INT,             -- usado em atualizar/excluir
+    IN p_acao          INT,             
+    IN p_id_produto    INT,             
     IN p_nome          VARCHAR(150),
     IN p_descricao     VARCHAR(300),
     IN p_preco         DECIMAL(10,2),
@@ -42,17 +35,10 @@ END$$
 
 DELIMITER ;
 
--- ============================================================
--- Chamadas de exemplo
--- ============================================================
-
--- 1) Inserir novo produto
 CALL sp_manipula_produto(1, NULL, 'Carregador Turbo 30W', 'Carregador USB-C rápido', 79.90, 1, 2);
 
--- 2) Atualizar o preço/descrição do produto de id 1
 CALL sp_manipula_produto(2, 1, 'Smartphone X200 Pro', 'Smartphone 128GB, 6GB RAM', 1399.90, 1, 2);
 
--- 3) Excluir o produto de id 1
 CALL sp_manipula_produto(3, 1, NULL, NULL, NULL, NULL, NULL);
 
 -- Conferir o resultado
