@@ -1,9 +1,3 @@
--- ============================================================
--- Procedure de manipulação de dados — Universidade
--- Variável de controle p_acao decide a operação:
---   1 = inserir | 2 = atualizar | 3 = excluir
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS universidade;
 USE universidade;
 
@@ -18,8 +12,8 @@ CREATE TABLE IF NOT EXISTS aluno (
 DELIMITER $$
 
 CREATE PROCEDURE sp_manipula_aluno (
-    IN p_acao       INT,           -- 1 = inserir | 2 = atualizar | 3 = excluir
-    IN p_id_aluno   INT,           -- usado em atualizar/excluir
+    IN p_acao       INT,           
+    IN p_id_aluno   INT,          
     IN p_nome       VARCHAR(150),
     IN p_curso      VARCHAR(100),
     IN p_email      VARCHAR(150),
@@ -48,18 +42,10 @@ END$$
 
 DELIMITER ;
 
--- ============================================================
--- Chamadas de exemplo
--- ============================================================
-
--- 1) Inserir novo aluno
 CALL sp_manipula_aluno(1, NULL, 'Fernanda Costa', 'Engenharia de Software', 'fernanda.costa@uni.edu', '2026001');
 
--- 2) Atualizar dados do aluno de id 1
 CALL sp_manipula_aluno(2, 1, 'Fernanda Costa Lima', 'Engenharia de Software', 'fernanda.lima@uni.edu', '2026001');
 
--- 3) Excluir o aluno de id 1
 CALL sp_manipula_aluno(3, 1, NULL, NULL, NULL, NULL);
 
--- Conferir o resultado
 SELECT * FROM aluno;
